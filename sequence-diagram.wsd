@@ -1,0 +1,33 @@
+@startuml Sequence Diagram
+
+title Authentication with Credential Leakage Protection
+
+actor User as U
+participant App as A
+participant IDP as I
+participant HaveIBeenPwned as H
+
+U -> A: Request a service
+A -> U: Render a login page
+U -> A: Provide username/password
+
+A -> I: Validate the username/password
+I -> I: OK
+I -> H: Check if the username leaked
+
+alt #LightBlue Safe Credential
+H -> I: Safe
+I -> A: Success
+A -> U: Grant access
+
+else #PaleVioletRed Leaked Credential
+H -> I: Leaked
+I -> A: Challenge
+A -> U: Challenge with OTP
+U -> A: Solve the challenge
+A -> I: Validate the challenge
+I -> A: Success
+A -> U: Grant Access
+end
+
+@enduml
