@@ -1,0 +1,31 @@
+@startuml sequence diagram
+autonumber
+
+title TCP/IP Protocol Connection
+
+participant Client as C
+participant Server as S
+
+alt Establishment
+C -> S: Syn
+S -> C: Ack-Syn
+C -> S: Ack
+end
+
+...
+
+C <-> S: Connection
+
+...
+
+
+alt Termination
+C -> S: Fin
+S -> C: Ack
+S -> C: Fin
+C -> S: Ack
+end
+
+
+
+@enduml

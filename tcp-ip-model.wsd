@@ -1,0 +1,23 @@
+@startuml
+
+title TCP/IP Protocol Model
+
+|Sender|
+partition "TCP/IP Model" {
+    start
+    :Application Layer;
+    :Transport Layer;
+    :Internet Layer;
+    :Datalink Layer;
+}
+
+|Receiver|
+partition "TCP/IP Model" {
+    :Datalink Layer;
+    :Internet Layer;
+    :Transport Layer;
+    :Application Layer;
+    stop
+}
+
+@enduml
